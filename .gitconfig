@@ -1,0 +1,13 @@
+[user]
+	email = ql3895619@gmail.com
+	name = yichung
+[alias]
+  cm = commit -m
+  co = checkout
+  lg = log --graph --pretty=format:'%C(yellow)%h%Creset %C(bold blue)<%an>%Creset %Cgreen(%cr)%Creset %C(yellow)%d%Creset %s' --abbrev-commit
+  s  = status -s
+  dh = difftool HEAD
+[push]
+	default = matching
+[core]
+	editor = vim
