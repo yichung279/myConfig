@@ -117,7 +117,6 @@ nnoremap _ <C-W>_
 nnoremap = <C-W>=
 nnoremap \| <C-W>\|
 nnoremap <C-C> <C-A>
-nnoremap ` :NERDTreeToggle<CR>
 nnoremap tt :TagbarToggle<CR>
 "---- auto noh after search ----"
 nnoremap <esc> :noh<return><esc>
