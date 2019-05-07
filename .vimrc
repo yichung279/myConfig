@@ -56,6 +56,8 @@ set nofoldenable
 set nowrap
 set ruler
 set updatetime=100
+" allow backspacing over everything in insert mode on MacOS
+set backspace=indent,eol,start
 
 syntax on
 highlight Comment ctermfg=Blue
