@@ -12,6 +12,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Yggdroot/indentLine'
+Plugin 'terryma/vim-multiple-cursors'
 "---syntax for different languages---
 Plugin 'vim-python/python-syntax'
 Plugin 'hynek/vim-python-pep8-indent'
@@ -43,7 +44,7 @@ let g:airline_theme='light'
 " -- indentLine -- "
 let g:indentLine_color_term = 239
 let g:indentLine_char = '¦'
-let g:indentLine_conceallevel = 1
+let g:indentLine_conceallevel = 2
 let g:pymode_lint_ignore = 'E502'
 
 set t_Co=256
