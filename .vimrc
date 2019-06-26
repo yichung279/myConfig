@@ -32,6 +32,9 @@ filetype plugin indent on
 let g:python_highlight_all = 1
 let g:html_indent_inctags='html,head,body'
 let g:gitgutter_diff_base='HEAD'
+highlight GitGutterAdd    guifg=#009900 ctermfg=2
+highlight GitGutterChange guifg=#bbbb00 ctermfg=3
+highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 " -- airline -- "
 let g:airline_left_sep='>'
 let g:airline_right_sep='<'
