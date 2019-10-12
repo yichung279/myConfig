@@ -13,6 +13,9 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Yggdroot/indentLine'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'tpope/vim-eunuch'
+Plugin 'scrooloose/nerdtree'
+Plugin 'w0rp/ale'
 "---syntax for different languages---
 Plugin 'vim-python/python-syntax'
 Plugin 'hynek/vim-python-pep8-indent'
@@ -35,6 +38,9 @@ let g:gitgutter_diff_base='HEAD'
 highlight GitGutterAdd    guifg=#009900 ctermfg=2
 highlight GitGutterChange guifg=#bbbb00 ctermfg=3
 highlight GitGutterDelete guifg=#ff2222 ctermfg=1
+" -- NERDTree -- "
+map <C-t> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " -- airline -- "
 let g:airline_left_sep='>'
 let g:airline_right_sep='<'
@@ -78,7 +84,6 @@ highlight Constant ctermfg=magenta
 highlight Special ctermfg=Red
 highlight PreProc ctermfg=Blue
 
-
 autocmd FileType yaml,html,css,javascript,ls,vue setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType javascript setlocal filetype=javascript.jsx
 autocmd FileType javascript.jsx setlocal autoindent
@@ -110,8 +115,10 @@ highlight vueTag ctermfg=Blue
 autocmd BufNewFile *.pug 0r $HOME/.vim/template/tmpl.pug
 autocmd BufNewFile *.vue 0r $HOME/.vim/template/tmpl.vue
 " autocmd BufNewFile *.pl silent! 0r $HOME/.vim/template/tmpl.pl | 4
-autocmd BufNewFile *.py 0r $HOME/.vim/template/tmpl.py
+"autocmd BufNewFile *.py 0r $HOME/.vim/template/tmpl.py
 " autocmd BufNewFile *.c silent! 0r $HOME/.vim/template/tmpl.c | 7delete | 3
+autocmd BufNewFile *.sh exec ":call append(0, '#!/bin/sh')"
+autocmd BufNewFile *.py exec ":call append(0, '#!/usr/bin/env python')"
 
 nnoremap <Tab> <C-W>w
 nnoremap <C-W><C-W> <C-W>p
