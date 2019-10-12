@@ -8,8 +8,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plugin 'itchyny/lightline.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'Yggdroot/indentLine'
 Plugin 'terryma/vim-multiple-cursors'
@@ -41,20 +40,13 @@ highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 " -- NERDTree -- "
 map <C-t> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" -- airline -- "
-let g:airline_left_sep='>'
-let g:airline_right_sep='<'
-let g:airline_inactive_alt_sep=1
-let g:airline_section_y=0
-let g:airline#extensions#tabline#formatter = 'default'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#hunks#enabled=0
-let g:airline_theme='light'
 " -- indentLine -- "
 let g:indentLine_color_term = 239
 let g:indentLine_char = '¦'
 let g:indentLine_conceallevel = 2
 let g:pymode_lint_ignore = 'E502'
+" -- lightline -- "
+set laststatus=2
 
 set t_Co=256
 
