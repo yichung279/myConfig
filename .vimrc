@@ -109,10 +109,10 @@ highlight vueTag ctermfg=Blue
 autocmd BufNewFile *.pug 0r $HOME/.vim/template/tmpl.pug
 autocmd BufNewFile *.vue 0r $HOME/.vim/template/tmpl.vue
 " autocmd BufNewFile *.pl silent! 0r $HOME/.vim/template/tmpl.pl | 4
-"autocmd BufNewFile *.py 0r $HOME/.vim/template/tmpl.py
-" autocmd BufNewFile *.c silent! 0r $HOME/.vim/template/tmpl.c | 7delete | 3
+autocmd BufNewFile *.py 0r $HOME/.vim/template/tmpl.py
+"autocmd BufNewFile *.c silent! 0r $HOME/.vim/template/tmpl.c | 7delete | 3
 autocmd BufNewFile *.sh exec ":call append(0, '#!/bin/sh')"
-autocmd BufNewFile *.py exec ":call append(0, '#!/usr/bin/env python')"
+" autocmd BufNewFile *.py exec ":call append(0, '#!/usr/bin/env python')"
 
 nnoremap <Tab> <C-W>w
 nnoremap <C-W><C-W> <C-W>p
@@ -125,9 +125,11 @@ nnoremap = <C-W>=
 nnoremap \| <C-W>\|
 nnoremap <C-C> <C-A>
 nnoremap tt :TagbarToggle<CR>
-"---- auto noh after search ----"
 nnoremap <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
 command W w
 command Q q
 command Wq wq
+
+imap <Tab> <C-n>
+vmap <Tab> gc
