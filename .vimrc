@@ -1,36 +1,36 @@
-" filetype on
-
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'majutsushi/tagbar'
-Plugin 'tomtom/tcomment_vim'
-Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'itchyny/lightline.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'Yggdroot/indentLine'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'tpope/vim-eunuch'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-Plugin 'scrooloose/nerdtree'
-Plugin 'w0rp/ale'
+call plug#begin('~/.vim/bundle')
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'honza/vim-snippets'
+Plug 'neoclide/coc-vetur'
+Plug 'neoclide/coc-python'
+Plug '~/.fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'tomtom/tcomment_vim'
+Plug 'majutsushi/tagbar'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'airblade/vim-gitgutter'
+Plug 'itchyny/lightline.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'Yggdroot/indentLine'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'scrooloose/nerdtree'
 "---syntax for different languages---
-Plugin 'vim-python/python-syntax'
-Plugin 'hynek/vim-python-pep8-indent'
-Plugin 'othree/html5.vim'
-Plugin 'digitaltoad/vim-pug'
-Plugin 'JulesWang/css.vim'
-Plugin 'tpope/vim-haml'
-Plugin 'othree/yajs.vim'
-Plugin 'othree/es.next.syntax.vim'
-Plugin 'gavocanov/vim-js-indent'
-" Plugin 'mxw/vim-jsx' for react js
-" Plugin 'gkz/vim-ls'  for Livescript
+Plug 'vim-python/python-syntax'
+Plug 'hynek/vim-python-pep8-indent'
+Plug 'othree/html5.vim'
+Plug 'digitaltoad/vim-pug'
+Plug 'JulesWang/css.vim'
+Plug 'tpope/vim-haml'
+Plug 'othree/yajs.vim'
+Plug 'othree/es.next.syntax.vim'
+Plug 'gavocanov/vim-js-indent'
 
-call vundle#end()
+call plug#end()
+
 filetype plugin indent on
 
 let g:python_highlight_all = 1
@@ -131,5 +131,55 @@ command W w
 command Q q
 command Wq wq
 
-imap <Tab> <C-n>
 vmap <Tab> gc
+
+" ----   coc.nvim ------
+" coc config
+let g:coc_global_extensions = [
+  \ 'coc-snippets',
+  \ 'coc-pairs',
+  \ 'coc-prettier',
+  \ 'coc-json',
+  \ ]
+
+" if hidden is not set, TextEdit might fail.
+set hidden
+
+" Some servers have issues with backup files, see #649
+set nobackup
+set nowritebackup
+
+" Better display for messages
+set cmdheight=2
+
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" always show signcolumns
+set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Remap for rename current word
+nmap <F2> <Plug>(coc-rename)
+" prettier command for coc
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<Right>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<Left>'
