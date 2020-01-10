@@ -1,3 +1,4 @@
+" --- Plugins --- "
 call plug#begin('~/.vim/bundle')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
@@ -8,7 +9,6 @@ Plug 'tomtom/tcomment_vim'
 Plug 'majutsushi/tagbar'
 Plug 'airblade/vim-gitgutter'
 Plug 'itchyny/lightline.vim'
-Plug 'tpope/vim-fugitive'
 Plug 'Yggdroot/indentLine'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-eunuch'
@@ -25,34 +25,74 @@ Plug 'tpope/vim-haml'
 Plug 'othree/yajs.vim'
 Plug 'othree/es.next.syntax.vim'
 Plug 'gavocanov/vim-js-indent'
-
+Plug 'flazz/vim-colorschemes'
 call plug#end()
 
-filetype plugin indent on
+" -- colorscheme --"
+" colorscheme codedark
+colorscheme tender
+" colorscheme Molokai
 
-let g:python_highlight_all = 1
+" -- python-syntax -- "
+let g:python_highlight_all=1
+
+" -- html5.vim  -- "
 let g:html_indent_inctags='html,head,body'
+
+" -- gitgutter -- "
 let g:gitgutter_diff_base='HEAD'
+let g:gitgutter_sign_allow_clobber = 1
 highlight GitGutterAdd    guifg=#009900 ctermfg=2
 highlight GitGutterChange guifg=#bbbb00 ctermfg=3
 highlight GitGutterDelete guifg=#ff2222 ctermfg=1
+
 " -- NERDTree -- "
 map <C-t> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
 " -- indentLine -- "
 let g:indentLine_color_term = 239
 let g:indentLine_char = '¦'
 let g:indentLine_conceallevel = 2
 let g:pymode_lint_ignore = 'E502'
 
+" -- lightline -- "
+let g:lightline = { 'colorscheme': 'wombat'}
+set nocompatible
+set noshowmode   "to get rid of thing like --INSERT--
+set noshowcmd  " to get rid of display of last command
+set shortmess+=F  " to get rid of the file name displayed in the command
 set laststatus=2
 
-set t_Co=256
+" -- coc.nvim -- "
+let g:coc_global_extensions=['coc-snippets', 'coc-pairs', 'coc-prettier', 'coc-json']
+set hidden
+set nobackup
+set nowritebackup
+set cmdheight=2
+set shortmess+=c
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+nmap rn <Plug>(coc-rename)
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+let g:coc_snippet_next = '<Right>'
+let g:coc_snippet_prev = '<Left>'
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
-set nocompatible
+" --- Norml Setting --- "
+filetype plugin indent on
+syntax on
+set t_Co=256
 set incsearch
 set hlsearch
-set modelines=1
+set modeline
+set modelines=2
 set nofoldenable
 set nowrap
 set ruler
@@ -60,21 +100,7 @@ set updatetime=100
 " allow backspacing over everything in insert mode on MacOS
 set backspace=indent,eol,start
 
-syntax on
-highlight Comment ctermfg=Blue
-highlight DiffAdd ctermfg=White ctermbg=Green
-highlight DiffChange ctermfg=White ctermbg=Yellow
-highlight DiffDelete ctermfg=White ctermbg=Red
-highlight DiffText ctermfg=DarkGray ctermbg=Gray
-highlight Incsearch ctermfg=White
-highlight LineNr ctermfg=DarkGray
-highlight Visual ctermfg=White
-
-highlight Directory ctermfg=Cyan
-highlight Constant ctermfg=magenta
-highlight Special ctermfg=Red
-highlight PreProc ctermfg=Blue
-
+" --- Set shiftwidth and softtabstop --- "
 autocmd FileType yaml,html,css,javascript,ls,vue setlocal expandtab shiftwidth=2 softtabstop=2
 autocmd FileType javascript setlocal filetype=javascript.jsx
 autocmd FileType javascript.jsx setlocal autoindent
@@ -85,8 +111,6 @@ autocmd FileType sh,make setlocal shiftwidth=4 tabstop=4
 autocmd FileType c,cuda,cpp setlocal shiftwidth=4 tabstop=4 expandtab
 autocmd FileType php setlocal shiftwidth=4 tabstop=4 expandtab
 autocmd BufNewFile *.h setlocal shiftwidth=4 tabstop=4 expandtab
-
-" au BufRead,BufNewFile *.asm set filetype=nasm tabstop=4 shiftwidth=4
 
 autocmd BufNewFile,BufEnter *.vue setfiletype vue
 autocmd FileType vue setlocal autoindent expandtab shiftwidth=2 softtabstop=2 commentstring=//\ %s comments=://
@@ -102,15 +126,15 @@ autocmd FileType vue setlocal autoindent expandtab shiftwidth=2 softtabstop=2 co
 \ | syntax sync fromstart
 highlight vueTag ctermfg=Blue
 
-" autocmd BufNewFile *.html silent! 0r $HOME/.vim/template/tmpl.html | 12delete | 9
-autocmd BufNewFile *.pug 0r $HOME/.vim/template/tmpl.pug
-autocmd BufNewFile *.vue 0r $HOME/.vim/template/tmpl.vue
-" autocmd BufNewFile *.pl silent! 0r $HOME/.vim/template/tmpl.pl | 4
+" --- Open new file with template --- "
 autocmd BufNewFile *.py 0r $HOME/.vim/template/tmpl.py
-"autocmd BufNewFile *.c silent! 0r $HOME/.vim/template/tmpl.c | 7delete | 3
-autocmd BufNewFile *.sh exec ":call append(0, '#!/bin/sh')"
-" autocmd BufNewFile *.py exec ":call append(0, '#!/usr/bin/env python')"
+autocmd BufNewFile *.sh exec ":call append(0, '#!/bin/bash')"
+" autocmd BufNewFile *.c silent! 0r $HOME/.vim/template/tmpl.c | 7delete | 3
+" autocmd BufNewFile *.html silent! 0r $HOME/.vim/template/tmpl.html | 12delete | 9
+" autocmd BufNewFile *.pug 0r $HOME/.vim/template/tmpl.pug
+" autocmd BufNewFile *.vue 0r $HOME/.vim/template/tmpl.vue
 
+" --- Alias --- "
 nnoremap <Tab> <C-W>w
 nnoremap <C-W><C-W> <C-W>p
 nnoremap + <C-W>+
@@ -122,62 +146,12 @@ nnoremap = <C-W>=
 nnoremap \| <C-W>\|
 nnoremap <C-C> <C-A>
 nnoremap tt :TagbarToggle<CR>
+nnoremap ps :set paste<CR>
+nnoremap nps :set nopaste<CR>
 nnoremap <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
 command W w
 command Q q
 command Wq wq
-
 vmap <Tab> gc
 
-" ----   coc.nvim ------
-" coc config
-let g:coc_global_extensions = [
-  \ 'coc-snippets',
-  \ 'coc-pairs',
-  \ 'coc-prettier',
-  \ 'coc-json',
-  \ ]
-
-" if hidden is not set, TextEdit might fail.
-set hidden
-
-" Some servers have issues with backup files, see #649
-set nobackup
-set nowritebackup
-
-" don't give |ins-completion-menu| messages.
-set shortmess+=c
-
-" always show signcolumns
-set signcolumn=yes
-
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Remap for rename current word
-nmap rn <Plug>(coc-rename)
-" prettier command for coc
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-" Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<Right>'
-
-" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<Left>'
-let g:lightline = {
-      \ 'colorscheme': 'PaperColor',
-      \ }
-
-set noshowmode   "to get rid of thing like --INSERT--
-set noshowcmd  " to get rid of display of last command
-set shortmess+=F  " to get rid of the file name displayed in the command
