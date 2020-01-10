@@ -1,14 +1,11 @@
 call plug#begin('~/.vim/bundle')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
-Plug 'neoclide/coc-vetur'
-Plug 'neoclide/coc-python'
 Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'tomtom/tcomment_vim'
 Plug 'majutsushi/tagbar'
-Plug 'ntpeters/vim-better-whitespace'
 Plug 'airblade/vim-gitgutter'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
@@ -47,7 +44,7 @@ let g:indentLine_color_term = 239
 let g:indentLine_char = '¦'
 let g:indentLine_conceallevel = 2
 let g:pymode_lint_ignore = 'E502'
-" -- lightline -- "
+
 set laststatus=2
 
 set t_Co=256
@@ -149,12 +146,6 @@ set hidden
 set nobackup
 set nowritebackup
 
-" Better display for messages
-set cmdheight=2
-
-" You will have bad experience for diagnostic messages when it's default 4000.
-set updatetime=300
-
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
 
@@ -175,7 +166,7 @@ function! s:check_back_space() abort
 endfunction
 
 " Remap for rename current word
-nmap <F2> <Plug>(coc-rename)
+nmap rn <Plug>(coc-rename)
 " prettier command for coc
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
@@ -183,3 +174,10 @@ let g:coc_snippet_next = '<Right>'
 
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
 let g:coc_snippet_prev = '<Left>'
+let g:lightline = {
+      \ 'colorscheme': 'PaperColor',
+      \ }
+
+set noshowmode   "to get rid of thing like --INSERT--
+set noshowcmd  " to get rid of display of last command
+set shortmess+=F  " to get rid of the file name displayed in the command
