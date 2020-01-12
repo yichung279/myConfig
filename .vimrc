@@ -1,4 +1,4 @@
-" --- Plugins --- "
+" -- Plugins --- "
 call plug#begin('~/.vim/bundle')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
@@ -69,7 +69,7 @@ let g:coc_global_extensions=['coc-snippets', 'coc-pairs', 'coc-prettier', 'coc-j
 set hidden
 set nobackup
 set nowritebackup
-set cmdheight=2
+set cmdheight=1
 set shortmess+=c
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 nmap rn <Plug>(coc-rename)
