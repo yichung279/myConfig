@@ -2,19 +2,16 @@
 call plug#begin('~/.vim/bundle')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
-Plug '~/.fzf'
-Plug 'junegunn/fzf.vim'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'tomtom/tcomment_vim'
-Plug 'majutsushi/tagbar'
 Plug 'airblade/vim-gitgutter'
 Plug 'itchyny/lightline.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdtree'
+Plug 'ap/vim-css-color'
 "---syntax for different languages---
 Plug 'vim-python/python-syntax'
 Plug 'hynek/vim-python-pep8-indent'
@@ -39,12 +36,17 @@ let g:python_highlight_all=1
 " -- html5.vim  -- "
 let g:html_indent_inctags='html,head,body'
 
+" -- tcomment_vim -- ""
+vmap <Tab> gc
+
 " -- gitgutter -- "
 let g:gitgutter_diff_base='HEAD'
 let g:gitgutter_sign_allow_clobber = 1
 highlight GitGutterAdd    guifg=#009900 ctermfg=2
 highlight GitGutterChange guifg=#bbbb00 ctermfg=3
 highlight GitGutterDelete guifg=#ff2222 ctermfg=1
+nnoremap <Tab><Down> :GitGutterNextHunk<CR>
+nnoremap <Tab><Up> :GitGutterPrevHunk<CR>
 
 " -- NERDTree -- "
 map <C-t> :NERDTreeToggle<CR>
@@ -52,7 +54,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 " -- indentLine -- "
 let g:indentLine_color_term = 239
-let g:indentLine_char = '¦'
+let g:indentLine_char = '|'
 let g:indentLine_conceallevel = 2
 let g:pymode_lint_ignore = 'E502'
 
@@ -95,6 +97,7 @@ set modeline
 set modelines=2
 set nofoldenable
 set nowrap
+set number
 set ruler
 set updatetime=100
 " allow backspacing over everything in insert mode on MacOS
@@ -146,12 +149,17 @@ nnoremap = <C-W>=
 nnoremap \| <C-W>\|
 nnoremap <C-C> <C-A>
 nnoremap tt :TagbarToggle<CR>
-nnoremap ps :set paste<CR>
+nnoremap ps :set paste<CR> o
 nnoremap nps :set nopaste<CR>
 nnoremap <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
 command W w
 command Q q
 command Wq wq
-vmap <Tab> gc
+command WQ wq
 
+" -- tmux window name -- "
+autocmd BufEnter * call system("tmux rename-window " . expand("%:t"))
+autocmd VimLeave * call system("tmux rename-window bash")
+autocmd BufEnter * let &titlestring = ' ' . expand("%:t")
+set title
