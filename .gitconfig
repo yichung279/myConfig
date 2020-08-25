@@ -2,13 +2,14 @@
 	email = ql3895619@gmail.com
 	name = yiz
 [alias]
-  b  = branch
-  cm = commit -m
-  dh = difftool HEAD
-  co = checkout
-  lg = log --graph --pretty=format:'%C(yellow)%h%Creset %C(bold blue)<%an>%Creset %Cgreen(%cr)%Creset %C(yellow)%d%Creset %s' --abbrev-commit
-  s  = status -s
+	b  = branch
+	cm = commit -m
+	dh = difftool HEAD
+	co = checkout
+	lg = log --graph --pretty=format:'%C(yellow)%h%Creset %C(bold blue)<%an>%Creset %Cgreen(%cr)%Creset %C(yellow)%d%Creset %s' --abbrev-commit
+	s  = status -s
 [push]
 	default = matching
 [core]
 	editor = vim
+	excludesFile = ~/.config/git/ignore

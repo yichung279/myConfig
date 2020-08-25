@@ -12,6 +12,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdtree'
 Plug 'ap/vim-css-color'
+Plug 'dense-analysis/ale'
 "---syntax for different languages---
 Plug 'JulesWang/css.vim'
 Plug 'flazz/vim-colorschemes'
@@ -94,10 +95,22 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+"-- ale (language server protocol client)
+let g:ale_fix_on_save=1
+let g:ale_fixers={
+\ '*': ['prettier'],
+\ 'json': ['fixjson'],
+\ 'python': ['isort', 'autopep8']
+\ }
+let g:ale_linters_explicit=1
+let g:ale_disable_lsp = 1
 
 " --- Norml Setting --- "
 filetype plugin indent on
 syntax on
+set backupdir=~/tmp,.,/var/tmp/vi,/tmp
+set directory=~/tmp,/var/tmp/vi,/tmp,.
+set nobackup		                        " keep a backup file
 set t_Co=256
 set incsearch
 set hlsearch
@@ -121,7 +134,7 @@ autocmd FileType json let g:indentLine_conceallevel = 0
 " --- Open new file with template --- "
 autocmd BufNewFile *.py 0r $HOME/.vim/template/tmpl.py
 autocmd BufNewFile *.sh exec ":call append(0, '#!/bin/bash')"
-autocmd BufWritePost *.py,*.sh silent ! chmod a+x %
+" autocmd BufWritePost *.py,*.sh silent ! chmod a+x %
 " autocmd BufNewFile *.c silent! 0r $HOME/.vim/template/tmpl.c | 7delete | 3
 
 nnoremap \| <C-W>\|
@@ -138,4 +151,4 @@ command CopyModeOff set number nowrap
 command PasteModeOn set paste
 command PasteModeOff set nopaste
 
-
+hi Search guifg=#ffffff ctermfg=232 guibg=NONE ctermbg=185 gui=underline,Bold cterm=underline,Bold
