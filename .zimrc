@@ -3,6 +3,9 @@
 # Modules
 # -------
 
+# z
+zmodule https://github.com/agkozak/zsh-z
+
 # theme
 zmodule romkatv/powerlevel10k
 
