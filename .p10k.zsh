@@ -33,7 +33,6 @@
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
     os_icon                 # os identifier
-    context                 # user@hostname
     dir                     # current directory
     vcs                     # git status
     # =========================[ Line #2 ]=========================
@@ -90,9 +89,10 @@
     nix_shell               # nix shell (https://nixos.org/nixos/nix-pills/developing-with-nix-shell.html)
     # vi_mode               # vi mode (you don't need this if you've enabled prompt_char)
     # vpn_ip                # virtual private network indicator
-    load                  # CPU load
+    context                 # user@hostname
+    # load                  # CPU load
     # disk_usage            # disk usage
-    ram                   # free RAM
+    # ram                   # free RAM
     # swap                  # used swap
     todo                    # todo items (https://github.com/todotxt/todo.txt-cli)
     timewarrior             # timewarrior tracking status (https://timewarrior.net/)
@@ -460,7 +460,7 @@
   typeset -g POWERLEVEL9K_VCS_{STAGED,UNSTAGED,UNTRACKED,CONFLICTED,COMMITS_AHEAD,COMMITS_BEHIND}_MAX_NUM=-1
 
   # Custom icon.
-  # typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_EXPANSION='⭐'
+  typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_EXPANSION=' '
   # Custom prefix.
   # typeset -g POWERLEVEL9K_VCS_PREFIX='on '
 
