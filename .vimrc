@@ -68,7 +68,7 @@ let g:indentLine_char = '|'
 
 
 " -- lightline -- "
-let g:lightline = { 'colorscheme': 'wombat'}
+let g:lightline = { 'colorscheme': 'nord'}
 set nocompatible
 set noshowmode   "to get rid of thing like --INSERT--
 set noshowcmd  " to get rid of display of last command
@@ -121,6 +121,7 @@ set nofoldenable
 set nowrap
 set number
 set ruler
+set cursorline
 set updatetime=100
 set backspace=indent,eol,start " allow backspacing over everything in insert mode on MacOS
 
