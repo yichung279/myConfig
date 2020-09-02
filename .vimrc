@@ -27,8 +27,9 @@ call plug#end()
 
 " -- colorscheme --"
 " colorscheme codedark
-colorscheme tender
+" colorscheme tender
 " colorscheme Molokai
+colorscheme nord
 
 
 " -- python-syntax -- "
