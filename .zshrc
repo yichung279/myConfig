@@ -176,6 +176,7 @@ done
 
 function venv_cwd {
   # Check that this is a Git repo
+  GIT_DIR=`git rev-parse --git-dir 2> /dev/null`
   unset ENV_NAME
   VENV_HOME="$HOME/.venv"
   if [ -f ".venv" ]; then
@@ -185,13 +186,13 @@ function venv_cwd {
     # Activate the environment only if it is not already active
     if [ "$VIRTUAL_ENV" != "$VENV_HOME/$ENV_NAME" ]; then
       if [ -e "$VENV_HOME/$ENV_NAME/bin/activate" ]; then
-        . $VENV_HOME/$ENV_NAME/bin/activate && export CD_VIRTUAL_ENV="$ENV_NAME"
+        . $VENV_HOME/$ENV_NAME/bin/activate
       fi
     fi
-  elif [ $CD_VIRTUAL_ENV ]; then
-    # We've just left the repo, deactivate the environment
-    # Note: this only happens if the virtualenv was activated automatically
-    deactivate && unset CD_VIRTUAL_ENV
+  elif [ -z $GIT_DIR ] && [ $VIRTUAL_ENV ];then
+    echo $GIT_DIR
+    echo $VIRTUAL_ENV
+    deactivate
   fi
 }
 function venv_cd {

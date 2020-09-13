@@ -1,7 +1,6 @@
 " -- Plugins --- "
 call plug#begin('~/.vim/bundle')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'honza/vim-snippets'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'tomtom/tcomment_vim'
 Plug 'airblade/vim-gitgutter'
@@ -13,16 +12,17 @@ Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdtree'
 Plug 'ap/vim-css-color'
 Plug 'dense-analysis/ale'
-"---syntax for different languages---
-Plug 'JulesWang/css.vim'
 Plug 'flazz/vim-colorschemes'
-Plug 'posva/vim-vue'
-Plug 'othree/html5.vim'
-Plug 'digitaltoad/vim-pug'
-Plug 'othree/yajs.vim'
-Plug 'othree/es.next.syntax.vim'
-Plug 'vim-python/python-syntax'
-Plug 'hynek/vim-python-pep8-indent'
+"---syntax for different languages---
+Plug 'sheerun/vim-polyglot'
+" Plug 'JulesWang/css.vim'
+" Plug 'posva/vim-vue'
+" Plug 'othree/html5.vim'
+" Plug 'digitaltoad/vim-pug'
+" Plug 'othree/yajs.vim'
+" Plug 'othree/es.next.syntax.vim'
+" Plug 'vim-python/python-syntax'
+" Plug 'hynek/vim-python-pep8-indent'
 call plug#end()
 
 " -- colorscheme --"
@@ -30,6 +30,8 @@ call plug#end()
 " colorscheme tender
 " colorscheme Molokai
 colorscheme nord
+" colorscheme codedark " colorscheme of VScode
+
 
 
 " -- python-syntax -- "
@@ -124,6 +126,7 @@ set ruler
 set cursorline
 set updatetime=100
 set backspace=indent,eol,start " allow backspacing over everything in insert mode on MacOS
+set iskeyword-=_
 
 " --- Set shiftwidth and softtabstop --- "
 autocmd FileType yaml,html,css,javascript,ls,vue setlocal expandtab shiftwidth=2 softtabstop=2
