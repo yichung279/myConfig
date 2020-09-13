@@ -9,7 +9,8 @@ Plug 'Yggdroot/indentLine'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
-Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdtree' |
+            \ Plug 'ryanoasis/vim-devicons'
 Plug 'ap/vim-css-color'
 Plug 'dense-analysis/ale'
 Plug 'flazz/vim-colorschemes'
@@ -58,7 +59,7 @@ nnoremap <Tab><Right> :GitGutterPreviewHunk<CR>
 nnoremap <Tab><Left> :pclose<CR>
 
 
-" -- NERDTree -- "
+" -- NerdTree -- "
 map <C-t> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
@@ -144,7 +145,6 @@ autocmd BufNewFile *.sh exec ":call append(0, '#!/bin/bash')"
 
 nnoremap \| <C-W>\|
 nnoremap <C-C> <C-A>
-nnoremap tt :TagbarToggle<CR>
 nnoremap <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
 command W w
