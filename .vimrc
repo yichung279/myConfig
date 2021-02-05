@@ -59,9 +59,10 @@ nnoremap <Tab><Right> :GitGutterPreviewHunk<CR>
 nnoremap <Tab><Left> :pclose<CR>
 
 
-" -- NerdTree -- "
-map <C-t> :NERDTreeToggle<CR>
+" -- nerdTree -- "
+map t :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let g:NERDTreeQuitOnOpen = 1
 
 
 " -- indentLine -- "
@@ -127,7 +128,6 @@ set ruler
 set cursorline
 set updatetime=100
 set backspace=indent,eol,start " allow backspacing over everything in insert mode on MacOS
-set iskeyword-=_
 
 " --- Set shiftwidth and softtabstop --- "
 autocmd FileType yaml,html,css,javascript,ls,vue setlocal expandtab shiftwidth=2 softtabstop=2
@@ -149,11 +149,13 @@ nnoremap <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
 command W w
 command Q q
+command Qa qa
 command Wq wq
 command WQ wq
 command CopyModeOn set nonumber wrap
 command CopyModeOff set number nowrap
-command PasteModeOn set paste
-command PasteModeOff set nopaste
+for num in range(char2nr('0'), char2nr('9'))
+    execute 'nnoremap <Space>' . nr2char(num) . ' ' . nr2char(num) . 'gt'
+endfor
 
 hi Search guifg=#ffffff ctermfg=232 guibg=NONE ctermbg=185 gui=underline,Bold cterm=underline,Bold
