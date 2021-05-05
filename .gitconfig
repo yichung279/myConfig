@@ -1,10 +1,10 @@
 [user]
 	email = ql3895619@gmail.com
-	name = yiz
+	name = yizo
 [alias]
-	b  = branch
+	a = add
 	cm = commit -m
-	dh = difftool HEAD
+	cam = commit -a -m
 	co = checkout
 	lg = log --graph --pretty=format:'%C(yellow)%h%Creset %C(bold blue)<%an>%Creset %Cgreen(%cr)%Creset %C(yellow)%d%Creset %s' --abbrev-commit
 	s  = status -s
