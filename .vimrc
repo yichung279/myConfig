@@ -128,6 +128,9 @@ set ruler
 set cursorline
 set updatetime=100
 set backspace=indent,eol,start " allow backspacing over everything in insert mode on MacOS
+" set foldmethod=syntax "syntax highlighting items specify folds  
+" let javaScript_fold=1 "activate folding by JS syntax  
+" set foldlevelstart=99 "start file with all folds opened
 
 " --- Set shiftwidth and softtabstop --- "
 autocmd FileType yaml,html,css,javascript,ls,vue setlocal expandtab shiftwidth=2 softtabstop=2
@@ -146,6 +149,8 @@ autocmd BufNewFile *.sh exec ":call append(0, '#!/bin/bash')"
 nnoremap \| <C-W>\|
 nnoremap <C-C> <C-A>
 nnoremap <esc> :noh<return><esc>
+nnoremap M :m-2<CR>
+nnoremap m :m+
 nnoremap <esc>^[ <esc>^[
 command W w
 command Q q
