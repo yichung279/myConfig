@@ -53,10 +53,10 @@ let g:gitgutter_sign_allow_clobber = 1
 highlight GitGutterAdd    guifg=#009900 ctermfg=2
 highlight GitGutterChange guifg=#bbbb00 ctermfg=3
 highlight GitGutterDelete guifg=#ff2222 ctermfg=1
-nnoremap <Tab><Down> :GitGutterNextHunk<CR>
-nnoremap <Tab><Up> :GitGutterPrevHunk<CR>
-nnoremap <Tab><Right> :GitGutterPreviewHunk<CR>
-nnoremap <Tab><Left> :pclose<CR>
+nnoremap <Tab>j :GitGutterNextHunk<CR>
+nnoremap <Tab>k :GitGutterPrevHunk<CR>
+nnoremap <Tab>l :GitGutterPreviewHunk<CR>
+nnoremap <Tab>h :pclose<CR>
 
 
 " -- nerdTree -- "
@@ -149,8 +149,8 @@ autocmd BufNewFile *.sh exec ":call append(0, '#!/bin/bash')"
 nnoremap \| <C-W>\|
 nnoremap <C-C> <C-A>
 nnoremap <esc> :noh<return><esc>
-nnoremap M :m-2<CR>
-nnoremap m :m+<CR>
+nnoremap <C-k> :m-2<CR>
+nnoremap <C-j> :m+<CR>
 nnoremap <esc>^[ <esc>^[
 command W w
 command Q q
