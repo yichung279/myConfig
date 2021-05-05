@@ -141,6 +141,7 @@ alias cls='clear && ls'
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='_rm'
+alias g='git'
 alias rrm='/bin/rm -i'	# real rm
 alias vi='~/vim81/bin/vim'
 alias tx='tmux attach'
