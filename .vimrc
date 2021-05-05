@@ -150,7 +150,7 @@ nnoremap \| <C-W>\|
 nnoremap <C-C> <C-A>
 nnoremap <esc> :noh<return><esc>
 nnoremap M :m-2<CR>
-nnoremap m :m+
+nnoremap m :m+<CR>
 nnoremap <esc>^[ <esc>^[
 command W w
 command Q q
